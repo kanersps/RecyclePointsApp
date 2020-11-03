@@ -1,0 +1,28 @@
+﻿@page
+@using RecyclePoints.Core.Database.Models;
+@using RecyclePoints.Core.Database;
+@model RecyclePoints.Pages.Accounts.LoginModel
+
+@{
+    RContext context = new RContext();
+    Auth auth = context.Auth.Find(Request.Cookies["token"]);
+
+    if (auth != null)
+    {
+        Account account = context.Accounts.Where(u => u.Username == auth.Username).FirstOrDefault();
+
+        if (account != null)
+        {
+            <script>window.location.href = "/Accounts/Index"</script>
+        }
+    }
+}
+
+<h1>Inloggen</h1>
+<form method="post">
+    Gebruikersnaam:<br />
+    <input type="text" id="Username" name="Username" value="" /><br />
+    Wachtwoord: <br />
+    <input type="password" id="Password" name="Password" value="" /><br />
+    <input type="submit" value="Aanmelden">
+</form>

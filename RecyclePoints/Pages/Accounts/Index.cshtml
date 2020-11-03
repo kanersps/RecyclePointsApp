@@ -1,0 +1,51 @@
+﻿@page
+@using RecyclePoints.Core.Database.Models;
+@using RecyclePoints.Core.Database;
+@model RecyclePoints.Pages.Accounts.IndexModel
+@{
+    <script src="~/js/qrcode.min.js"></script>
+    <script>
+        // From Mozilla
+        function removeToken() {
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+    </script>
+
+    RContext context = new RContext();
+    Auth auth = context.Auth.Find(Request.Cookies["token"]);
+    Account account;
+
+    if (auth == null)
+    {
+        <span>Je bent niet geauthoriseerd om naar deze pagina te gaan</span>
+        return;
+    }
+    else
+    {
+        account = context.Accounts.Where(u => u.Username == auth.Username).FirstOrDefault();
+
+
+        <h1>Welkom, @account.Username</h1>
+        <span>U heeft @account.Points punten </span><br />
+
+        <a href="/Index" onclick="removeToken()">Uitloggen</a>
+
+        <center>
+            <h2>QR Code</h2>
+            <div id="qrcode"></div>
+            <span>@account.AccountId</span>
+        </center>
+
+        <script>
+            var qrcode = new QRCode("qrcode", {
+                text: "@account.AccountId",
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        </script>
+    }
+
+}

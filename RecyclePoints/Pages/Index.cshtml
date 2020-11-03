@@ -1,0 +1,26 @@
+﻿@page
+@using RecyclePoints.Core.Database;
+@using RecyclePoints.Core.Database.Models;
+@model IndexModel
+@{
+    ViewData["Title"] = "Thuispagina";
+
+    RContext context = new RContext();
+    Auth auth = context.Auth.Find(Request.Cookies["token"]);
+
+    if (auth != null)
+    {
+        Account account = context.Accounts.Where(u => u.Username == auth.Username).FirstOrDefault();
+
+        if (account != null)
+        {
+            <script>window.location.href = "/Accounts/Index"</script>
+        }
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welkom</h1>
+    <a href="Accounts/Login" class="button">Login</a>
+    <a href="Accounts/Register" class="button">Aanmelden</a>
+</div>
