@@ -18,9 +18,54 @@
         }
     }
 }
+<img src="~/Img/racoon@3xWasteZone.png" alt="logo test" class="center">
+<style>
+    .center
+    {
+        display: block;
+        top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
 
-<div class="text-center">
-    <h1 class="display-4">Welkom</h1>
-    <a href="Accounts/Login" class="button">Login</a>
-    <a href="Accounts/Register" class="button">Aanmelden</a>
+
+<style>
+    .home-btn 
+    {
+        width: 100%;
+        font-size: 30px;
+        font-weight: bold;
+        display: inline-block;
+        margin: 0 auto;
+        color: white;
+        background-color: #0013a3;
+        transition: all 0.3s;
+        box-sizing: border-box;
+        line-height: 2em;
+        cursor: pointer;
+        box-shadow: 0 0 0 rgba(0,0,0,0.1), inset 0 0 0 rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .bottom-home
+    {
+        position: absolute;
+        bottom: 20px;
+        width: 90%;
+        left: 5%;
+    }
+</style>
+
+<div class="text-center align-bottom">
+    <div class="bottom-home">
+        <a href="Accounts/Login">
+            <button style="margin:2.5px;" class="home-btn" type="submit" value="Inloggen">Inloggen</button>
+        </a>
+
+        <a href="Accounts/Register">
+            <button style="margin:2.5px;" class="home-btn" type="submit" value="Aanmelden">Aanmelden</button>
+        </a>
+    </div>
 </div>
