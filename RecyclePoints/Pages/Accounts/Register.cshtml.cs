@@ -25,10 +25,6 @@ namespace RecyclePoints.Pages.Accounts
         public string Password { get; set; }
         public ActionResult OnPost()
         {
-            // do something with emailAddress
-            Debug.WriteLine(Username);
-            Debug.WriteLine(Password);
-
             if(Username.Length < 3 || Password.Length < 3)
             {
                 return Content("Uw gebruikersnaam en wachtwoord moeten minimaal uit 3 tekens bestaan, u wordt automatisch terug gestuurd <script>setTimeout(() => { window.location.href='/Accounts/Register' }, 5000)</script>", "text/html");
