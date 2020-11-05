@@ -1,0 +1,22 @@
+﻿@page
+@{Layout = null; }
+@using RecyclePoints.Core.Database.Models;
+@using RecyclePoints.Core.Database;
+@model RecyclePoints.Pages.Accounts.AuthenticateModel
+@{
+    string code = Request.Query["code"].ToString();
+    string authenticated = "not authenticated";
+
+    Console.WriteLine(code);
+    Console.WriteLine(code);
+
+    RContext context = new RContext();
+
+    Account account = context.Accounts.Where(e => e.AccountId == ulong.Parse(code)).FirstOrDefault();
+
+    if (account != null)
+    {
+        authenticated = "authenticated";
+    }
+}
+@authenticated
