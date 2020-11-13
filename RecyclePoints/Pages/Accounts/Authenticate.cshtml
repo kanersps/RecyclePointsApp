@@ -1,0 +1,21 @@
+﻿@page
+@{
+    Layout = "";
+}
+@using RecyclePoints.Core.Database;
+@using RecyclePoints.Core.Database.Models;
+@model RecyclePoints.Pages.Accounts.IndexModel
+@{
+}
+@{
+    RContext context = new RContext();
+    Account auth = context.Accounts.Find(ulong.Parse(Request.Query["code"]));
+
+    string Authenticated = "no";
+
+    if (auth != null)
+    {
+        Authenticated = "authenticated";
+    }
+}
+@Authenticated

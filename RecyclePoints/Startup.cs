@@ -30,6 +30,15 @@ namespace RecyclePoints
         {
             services.AddRazorPages();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "All",
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin();
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +59,7 @@ namespace RecyclePoints
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("All");
 
             app.UseAuthorization();
 
